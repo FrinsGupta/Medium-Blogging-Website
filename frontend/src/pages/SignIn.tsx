@@ -6,6 +6,7 @@ import SubHeading from "../components/SubHeading";
 import axios from "axios"
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import { BackendUrl } from "../config";
 
 export default function () {
     const [email, setEmail] = useState("");
@@ -30,7 +31,17 @@ export default function () {
                     placeholder={"password"}
                     onChange={e=> setPassword(e.target.value)}
                 />
-                <Button btname={"Sign In"} onClick={()=>{}} />
+                <Button btname={"Sign In"} onClick={async()=>{
+                    const response = await axios.post(`${BackendUrl}/api/v1/user/signin`,{
+                        email,
+                        password
+                    })
+                    const token = response.data.token
+                    console.log(token);
+                    localStorage.setItem('token',token)
+                    navigate('blogs')
+                    
+                }} />
                 <BottomWarning warning={"Don't have an account? "} link={"Sign Up"} />
             </div>
         </div>

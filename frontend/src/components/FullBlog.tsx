@@ -1,21 +1,37 @@
 import React from "react";
+import { useFullBlogs } from "../hooks";
+import { useParams } from "react-router-dom";
 
 const FullBlog = () => {
+  const {id} = useParams();
+  const { loading, FullBlog } = useFullBlogs({
+    id: id || ""
+  })
+  console.log(FullBlog,loading);
+
+  if (loading) {
+    return <div>
+      Loading...
+    </div>
+  }
+  
   return (
     <div className=" flex mx-44 my-8">
       {/* Left */}
       <div className=" w-[60%] ">
         <div className="font-bold text-3xl mt-3">
-          How an Ugly Single-Page Website Makes $5000 a Month with Affiliate
-          Marketing
+          {/* How an Ugly Single-Page Website Makes $5000 a Month with Affiliate
+          Marketing */}
+          {FullBlog?.title}
         </div>
         <div className="flex mt-2">
           <p className="text-base ">Posted on</p>{" "}
           <p className="text-gray-600 ml-2">· Dec 3,2023</p>
         </div>
         <div className="mt-2">
-          No need to create a fancy and modern website with hundreds of pages to
-          make money online.Making money is a dream for many
+          {/* No need to create a fancy and modern website with hundreds of pages to
+          make money online.Making money is a dream for many */}
+          {FullBlog?.content}
         </div>
         <div className="flex text-sm my-9">
           {" "}
@@ -32,9 +48,9 @@ const FullBlog = () => {
 
         <div className="flex my-2">
           <button className=" bg-gray-300  text-center font-semibold  rounded-full px-[6px]  ">
-            N
+            {FullBlog?.author.name.charAt(0)}
           </button>
-          <p className="text-lg ml-4 font-bold">Name Last</p>
+          <p className="text-lg ml-4 font-bold">{FullBlog?.author.name}</p>
         </div>
         <p className="text-gray-600 text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi nemo dolore minima aut perferendis hic tempore eveniet eum esse facere?</p>
       </div>
