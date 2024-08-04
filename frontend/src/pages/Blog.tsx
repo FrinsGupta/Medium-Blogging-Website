@@ -1,4 +1,3 @@
-import React from 'react'
 import FullBlog from '../components/FullBlog'
 import AppBar from '../components/AppBar'
 
