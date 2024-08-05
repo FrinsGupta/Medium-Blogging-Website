@@ -20,7 +20,7 @@ const BlogCard = ({name, date, title, des, id }: BlogCardType) => {
             <p className='text-base ml-4'>{name} </p> <p className='text-gray-600 ml-2'>· {date}</p>
          </div>
          <div className='font-bold text-xl mt-3'>{title} </div>
-         <div className='mt-2'>{des}</div>
+         <div className='mt-2'>{des.substring(0, 450)}. . . .</div>
          <div className='flex text-sm my-9'> <p className='bg-gray-200 rounded-xl px-2 py-[2px] mr-2'>Side Hustle</p><p>3 min read</p> </div>
          <div className='bg-gray-300 h-[1px] w-full'></div>
       </div>

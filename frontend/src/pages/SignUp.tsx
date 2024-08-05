@@ -45,7 +45,7 @@ export default function () {
                          console.log(token);
                          localStorage.setItem('token',token)
                          if (token) {
-                             navigate('/blogs')
+                             navigate('/')
                          }
                     } catch (error) {
                         console.log(error);

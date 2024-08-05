@@ -39,7 +39,7 @@ export default function () {
                     const token = response.data.token
                     console.log(token);
                     localStorage.setItem('token',token)
-                    navigate('blogs')
+                    navigate('/')
                     
                 }} />
                 <BottomWarning warning={"Don't have an account? "} link={"Sign Up"} />

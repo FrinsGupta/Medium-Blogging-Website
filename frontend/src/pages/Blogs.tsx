@@ -1,8 +1,20 @@
 import BlogCard from "../components/BlogCard";
 import AppBar from "../components/AppBar";
 import { useBlogs } from "../hooks";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Blogs = () => {
+  const navigate = useNavigate()
+
+ useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
+    }
+  }, [navigate]);
+
+
   const { blogs, loading } = useBlogs();
   console.log(blogs);
 
