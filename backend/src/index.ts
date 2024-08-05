@@ -4,6 +4,8 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { sign, verify, decode } from "hono/jwt";
 import { cors } from "hono/cors";
 
+import { CreateBlogSchema, SignInSchema, SignUpSchema, UpdateBlogSchema  } from "@frinsgupta/medium-common";
+
 const app = new Hono<{
   Bindings: {
     DATABASE_URL: string;
@@ -58,7 +60,14 @@ app.post("/api/v1/user/signup", async (c) => {
   }).$extends(withAccelerate());
 
   try {
+
     const body = await c.req.json();
+    const {success} = SignUpSchema.safeParse(body)
+
+    if (!success) {
+      return c.json({msg: "Inputs are not Correct"})
+    }
+
     const userExist = await prisma.user.findUnique({
       where: {
         email: body.email,
@@ -90,6 +99,12 @@ app.post("api/v1/user/signin", async (c) => {
   }).$extends(withAccelerate());
 
   const body = await c.req.json();
+
+  const {success} = SignInSchema.safeParse(body)
+
+  if (!success) {
+    return c.json({msg: "Input are not correct"})
+  }
 
   try {
     const user = await prisma.user.findUnique({
@@ -133,6 +148,12 @@ app.post("api/v1/blog", async (c) => {
 
   const body = await c.req.json();
 
+  const {success} = CreateBlogSchema.safeParse(body)
+
+  if (!success) {
+    return c.json({msg: "Input are not correct"})
+  }
+
   const userId = c.get("userId");
 
   try {
@@ -156,6 +177,12 @@ app.put("api/v1/blog", async (c) => {
   }).$extends(withAccelerate());
 
   const body = await c.req.json();
+
+  const {success} = UpdateBlogSchema.safeParse(body)
+
+  if (!success) {
+    return c.json({msg: "Input are not correct"})
+  }
 
   const id = body.id;
 
@@ -213,17 +240,16 @@ app.get("api/v1/blog/:id", async (c) => {
       where: {
         id: id,
       },
-        select:{
-          id:true,
-          title: true,
-          content: true,
-          author: {
-            select:{
-              name: true
-            }
-          }
-        }
-      
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
     return c.json({ msg: "Filtered blog", response });
   } catch (error) {
