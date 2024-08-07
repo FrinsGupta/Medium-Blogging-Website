@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const Publish = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/signin");
     }
-  }, [navigate])
-  
-  
+  }, [navigate]);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   return (
