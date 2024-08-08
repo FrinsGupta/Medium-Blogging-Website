@@ -1,5 +1,6 @@
 import { useFullBlogs } from "../hooks";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader";
 
 const FullBlog = () => {
   const {id} = useParams();
@@ -7,15 +8,12 @@ const FullBlog = () => {
     id: id || ""
   })
   console.log(FullBlog,loading);
-
-  if (loading) {
-    return <div>
-      Loading...
-    </div>
-  }
   
   return (
     <div className=" flex mx-44 my-8">
+      <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-75 flex items-center justify-center`}>
+      <Loader/>
+      </div>
       {/* Left */}
       <div className=" w-[60%] ">
         <div className="font-bold text-3xl mt-3">

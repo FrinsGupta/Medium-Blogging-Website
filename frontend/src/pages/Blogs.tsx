@@ -3,6 +3,7 @@ import AppBar from "../components/AppBar";
 import { useBlogs } from "../hooks";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Loader from "../components/Loader";
 
 const Blogs = () => {
   const navigate = useNavigate()
@@ -18,13 +19,12 @@ const Blogs = () => {
   const { blogs, loading } = useBlogs();
   console.log(blogs);
 
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-
   return (
     <>
       <AppBar />
+      <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-75 flex items-center justify-center`}>
+      <Loader/>
+      </div>
       {blogs.map((element) => {
         return (
           <BlogCard
@@ -37,12 +37,6 @@ const Blogs = () => {
           />
         );
       })}
-      {/* <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" />
-      <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" />
-      <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" />
-      <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" />
-      <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" />
-      <BlogCard name="Name Last" title="How an Ugly Single-Page Website Makes $5000 a Month with Affiliate Marketing" des="No need to create a fancy and modern website with hundreds of pages to make money online.Making money is a dream for many" date="Dec 3,2023" /> */}
     </>
   );
 };
