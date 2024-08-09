@@ -50,10 +50,12 @@ export const blogRouter = new Hono<{
   
     try {
       const response = await prisma.post.create({
+        //@ts-ignore
         data: {
           title: body.title,
           content: body.content,
           authorId: userId,
+          subHeading: body.subHeading
         },
       });
       return c.json({ msg: "New post added", response });
@@ -86,6 +88,7 @@ export const blogRouter = new Hono<{
         data: {
           title: body.title,
           content: body.content,
+          subHeading: body.subHeading
         },
       });
       return c.json({ msg: "Updating successful", response });
@@ -106,6 +109,8 @@ export const blogRouter = new Hono<{
           id: true,
           title: true,
           content: true,
+          subHeading: true,
+          createdAt: true,
           author: {
             select: {
               name: true,
@@ -136,6 +141,8 @@ export const blogRouter = new Hono<{
           id: true,
           title: true,
           content: true,
+          subHeading: true,
+          createdAt:true,
           author: {
             select: {
               name: true,

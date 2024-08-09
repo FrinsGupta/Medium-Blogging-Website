@@ -21,8 +21,8 @@ const Blogs = () => {
 
   return (
     <>
-      <AppBar />
-      <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-75 flex items-center justify-center`}>
+      <AppBar setLoading={()=>{}}/>
+      <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-85 flex items-center justify-center`}>
       <Loader/>
       </div>
       {blogs.map((element) => {
@@ -33,6 +33,7 @@ const Blogs = () => {
             name={element.author.name}
             title={element.title}
             des={element.content}
+            subHeading={element.subHeading}
             date="Dec 3,2023"
           />
         );

@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
 
-const AppBar = () => {
+interface setLoadingType{
+  setLoading: (e: boolean) => void
+}
+
+const AppBar = ({setLoading}: setLoadingType) => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
@@ -13,7 +17,11 @@ const AppBar = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .then((res) => setName(res.data.response.name));
+      .then((res) =>{
+        setName(res.data.response.name)
+        setLoading(false)
+      } 
+        );
   }, []);
 
   return (
