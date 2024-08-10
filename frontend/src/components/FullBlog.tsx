@@ -17,8 +17,6 @@ const FullBlog = () => {
       {/* Left */}
       <div className=" w-[60%] ">
         <div className="font-bold text-3xl mt-3">
-          {/* How an Ugly Single-Page Website Makes $5000 a Month with Affiliate
-          Marketing */}
           {FullBlog?.title}
         </div>
         <div className="flex mt-2">
@@ -26,14 +24,12 @@ const FullBlog = () => {
           <p className="text-gray-600 ml-2">· Dec 3,2023</p>
         </div>
         <div className="mt-2">
-          {/* No need to create a fancy and modern website with hundreds of pages to
-          make money online.Making money is a dream for many */}
           {FullBlog?.content}
         </div>
         <div className="flex text-sm my-9">
           {" "}
           <p className="bg-gray-200 rounded-xl px-2 py-[2px] mr-2">
-            Side Hustle
+            {FullBlog?.subHeading}
           </p>
           <p>3 min read</p>{" "}
         </div>
