@@ -21,7 +21,7 @@ const Blogs = () => {
 
   return (
     <>
-      <AppBar setLoading={()=>{}}/>
+      <AppBar/>
       <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-85 flex items-center justify-center`}>
       <Loader/>
       </div>

@@ -3,11 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
 
-interface setLoadingType{
-  setLoading: (e: boolean) => void
-}
-
-const AppBar = ({setLoading}: setLoadingType) => {
+const AppBar = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
@@ -19,7 +15,6 @@ const AppBar = ({setLoading}: setLoadingType) => {
       })
       .then((res) =>{
         setName(res.data.response.name)
-        setLoading(false)
       } 
         );
   }, []);

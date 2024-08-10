@@ -15,7 +15,7 @@ const Blog = () => {
 
   return (
     <div>
-      <AppBar/>
+      <AppBar />
       <FullBlog/>
     </div>
   )

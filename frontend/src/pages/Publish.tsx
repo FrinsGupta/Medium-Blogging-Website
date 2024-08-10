@@ -19,10 +19,10 @@ const Publish = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [subHeading, setSubHeading] = useState("");
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   return (
     <>
-      <AppBar setLoading={setLoading} />
+      <AppBar  />
       <div className={`${loading?'block':'hidden'} absolute top-0 left-0 w-full h-full bg-gray-500 opacity-85 flex items-center justify-center`}>
       <Loader/>
       </div>
@@ -69,7 +69,7 @@ const Publish = () => {
           );
           console.log(response);
           const id = response.data.response.id;
-          // setLoading(false)
+          setLoading(false)
           if (id) {
             navigate(`/blog/${id}`);
           }
