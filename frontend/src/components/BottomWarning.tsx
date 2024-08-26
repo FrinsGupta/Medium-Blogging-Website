@@ -11,7 +11,7 @@ const BottomWarning = ({warning, link}: BottomWarningType) => {
     <div className=' font-semibold flex mt-2 mb-7' >
       {warning} <p className='underline ml-2 cursor-pointer'><button onClick={()=>{
         if (link=="Login") {
-          navigate('/')
+          navigate('/signin')
         } else {
           navigate('/signup')
         }

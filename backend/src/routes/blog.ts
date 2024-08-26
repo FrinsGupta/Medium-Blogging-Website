@@ -55,7 +55,8 @@ export const blogRouter = new Hono<{
           title: body.title,
           content: body.content,
           authorId: userId,
-          subHeading: body.subHeading
+          subHeading: body.subHeading,
+          createdAt: body.createdAt
         },
       });
       return c.json({ msg: "New post added", response });

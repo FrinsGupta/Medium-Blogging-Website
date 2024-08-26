@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
+import { useNavigate } from "react-router-dom";
 
 interface Blog {
     id: number,
     title: string,
     content: string,
     subHeading: string,
+    createdAt: string,
     author:{
         name: string
     }
@@ -35,6 +37,7 @@ export const useFullBlogs = ({id}:{id:string}) =>{
 export const useBlogs = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -44,8 +47,13 @@ export const useBlogs = () => {
         },
       })
       .then((res) => {
+        console.log(res);
+        
         setBlogs(res.data.response);
         setLoading(false);
+        if (res.data.error) {
+          navigate('/signup')
+        }
       });
   }, []);
 

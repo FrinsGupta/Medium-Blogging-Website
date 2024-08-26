@@ -20,6 +20,10 @@ const Publish = () => {
   const [content, setContent] = useState("");
   const [subHeading, setSubHeading] = useState("");
   const [loading, setLoading] = useState(false)
+
+  const date = new Date();
+          const dateArr = date.toString().split(" ")
+          const createdAt = `${dateArr[1]+" "+dateArr[2]+","+dateArr[3]}`
   return (
     <>
       <AppBar  />
@@ -49,17 +53,23 @@ const Publish = () => {
           }}
         />
       </div>
+      {createdAt}
       <button
         type="button"
         className="mx-[268px] mt-8 text-white bg-black   font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none "
         onClick={async () => {
           setLoading(true)
+          // const date = new Date();
+          // const dateArr = date.toString().split(" ")
+          // const createdAt = `${dateArr[1]+" "+dateArr[2]+","+dateArr[3]}`
+
           const response = await axios.post(
             `${BackendUrl}/api/v1/blog`,
             {
               title,
               content,
-              subHeading
+              subHeading,
+              createdAt
             },
             {
               headers: {

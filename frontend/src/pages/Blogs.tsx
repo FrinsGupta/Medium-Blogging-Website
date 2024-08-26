@@ -17,7 +17,7 @@ const Blogs = () => {
 
 
   const { blogs, loading } = useBlogs();
-  console.log(blogs);
+  // console.log(blogs);
 
   return (
     <>
@@ -34,7 +34,7 @@ const Blogs = () => {
             title={element.title}
             des={element.content}
             subHeading={element.subHeading}
-            date="Dec 3,2023"
+            date={element.createdAt}
           />
         );
       })}

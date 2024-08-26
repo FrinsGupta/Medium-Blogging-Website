@@ -21,7 +21,7 @@ const FullBlog = () => {
         </div>
         <div className="flex mt-2">
           <p className="text-base ">Posted on</p>{" "}
-          <p className="text-gray-600 ml-2">· Dec 3,2023</p>
+          <p className="text-gray-600 ml-2">· {FullBlog?.createdAt}</p>
         </div>
         <div className="mt-2">
           {FullBlog?.content}
