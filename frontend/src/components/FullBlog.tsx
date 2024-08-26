@@ -8,6 +8,11 @@ const FullBlog = () => {
     id: id || ""
   })
   console.log(FullBlog,loading);
+
+  const des = FullBlog?.content || " "
+
+  const desArr = des.split(" ")
+  const readTime = Math.trunc(desArr.length/200)+1
   
   return (
     <div className=" flex mx-44 my-8">
@@ -31,7 +36,7 @@ const FullBlog = () => {
           <p className="bg-gray-200 rounded-xl px-2 py-[2px] mr-2">
             {FullBlog?.subHeading}
           </p>
-          <p>3 min read</p>{" "}
+          <p>{readTime} min read</p>{" "}
         </div>
         <div className="bg-gray-300 h-[1px] w-full"></div>
       </div>
