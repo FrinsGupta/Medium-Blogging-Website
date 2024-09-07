@@ -1,0 +1,45 @@
+name: Build on Push and PR
+
+on: 
+  push: 
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  build:
+    name: Build the Project
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Check Out repositiory
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: "20"
+
+      - name: Install Dependencies for frontend
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Install Dependencies for backend
+        working-directory: ./backend
+        run: npm install
+
+      - name: Generate Prisma Client
+        working-directory: ./backend
+        run: npx prisma generate
+
+      - name: Run Build for frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Run Build for backend
+        working-directory: ./backend
+        run: npm run build
+       
+        
